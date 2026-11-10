@@ -36,6 +36,17 @@ public partial class SeatSelectionForm : Form
         for (int c = 1; c <= trip.Train.CoachCount(seatClass); c++)
             cboCoach.Items.Add($"{seatClass} coach {c}");
         cboCoach.SelectedIndex = 0;
+        Load += async (_, _) => await ShowUsdFareAsync();
+    }
+
+    // networking: the live EGP→USD rate is fetched over HTTP without blocking the window
+    private async Task ShowUsdFareAsync()
+    {
+        decimal? rate = await ExchangeRates.EgpToUsdAsync();
+        if (IsDisposed) return;
+        lblPrice.Text = rate is decimal r
+            ? $"Fare: {fare:N2} EGP  (≈ {fare * r:N2} USD at today's rate)"
+            : $"Fare: {fare:N2} EGP  (USD rate unavailable offline)";
     }
 
     private void cboCoach_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,6 +88,7 @@ public partial class SeatSelectionForm : Form
             From = from, To = to, Class = seatClass, Coach = Coach, Seat = seat,
             Price = fare, BookedAt = DateTime.Now
         };
+        Db.Save(BookedTicket);
         SampleData.Tickets.Add(BookedTicket);
         DialogResult = DialogResult.OK;
     }

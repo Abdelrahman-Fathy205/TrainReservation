@@ -59,11 +59,13 @@ public partial class StationsPage : UserControl
     {
         selected = null; // adding never collides with "itself"
         if (!ValidateInput()) return;
-        SampleData.Stations.Add(new Station
+        var station = new Station
         {
             Id = SampleData.NextId(SampleData.Stations, s => s.Id),
             Code = txtCode.Text, Name = txtName.Text.Trim(), City = txtCity.Text.Trim()
-        });
+        };
+        Db.Save(station);
+        SampleData.Stations.Add(station);
         LoadGrid();
         Theme.Info("Station added.");
     }
@@ -75,6 +77,7 @@ public partial class StationsPage : UserControl
         selected.Code = txtCode.Text;
         selected.Name = txtName.Text.Trim();
         selected.City = txtCity.Text.Trim();
+        Db.Save(selected);
         LoadGrid();
         Theme.Info("Station updated.");
     }
@@ -88,6 +91,7 @@ public partial class StationsPage : UserControl
             return;
         }
         if (!Theme.Confirm($"Delete station '{selected.Name}'?")) return;
+        Db.Delete("Stations", selected.Id);
         SampleData.Stations.Remove(selected);
         LoadGrid();
     }

@@ -4,8 +4,8 @@ using TrainReservation.Client.Models;
 namespace TrainReservation.Client.Services;
 
 /// <summary>
-/// In-memory data so the GUI can be demoed on its own.
-/// shortcut: everything is lost on exit; replace with calls to the TCP server (which owns SQL Server) in the next phase.
+/// In-memory cache of the data. <see cref="Db"/> loads it from SQL Server at startup and writes every change back;
+/// <see cref="Seed"/> fills it with demo data the first time (or when the database is unavailable).
 /// </summary>
 public static class SampleData
 {
@@ -44,8 +44,9 @@ public static class SampleData
         Debug.Assert(Fares.Calc(s[0], s[4], SeatClass.Second) == 208m, "208 km at 1.00/km");
     }
 
-    static SampleData()
+    public static void Seed()
     {
+        Users.Clear(); Stations.Clear(); Trains.Clear(); Trips.Clear(); Tickets.Clear();
         Users.AddRange(new[]
         {
             new User { Id = 1, Username = "admin", Password = "admin123", FullName = "System Admin", Email = "admin@rail.eg", Phone = "01000000000", Role = UserRole.Admin },
@@ -115,5 +116,6 @@ public static class SampleData
                 booked++;
             }
         }
+        Users.Add(crowd); // added last so the random passenger pick above never chooses it; the DB needs it for the ticket foreign key
     }
 }

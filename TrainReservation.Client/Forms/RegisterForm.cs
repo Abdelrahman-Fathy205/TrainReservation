@@ -37,12 +37,14 @@ public partial class RegisterForm : Form
         Check(txtConfirm.Text == txtPassword.Text, txtConfirm, "Passwords do not match.");
         if (!ok) return;
 
-        SampleData.Users.Add(new User
+        var newUser = new User
         {
             Id = SampleData.NextId(SampleData.Users, u => u.Id),
             FullName = name, Username = user, Email = email, Phone = phone,
             Password = txtPassword.Text, Role = UserRole.Passenger
-        });
+        };
+        Db.Save(newUser);
+        SampleData.Users.Add(newUser);
         CreatedUsername = user;
         MessageBox.Show("Account created. You can sign in now.", "Register", MessageBoxButtons.OK, MessageBoxIcon.Information);
         DialogResult = DialogResult.OK;
