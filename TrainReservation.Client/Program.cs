@@ -16,17 +16,6 @@ static class Program
             MessageBox.Show("Unexpected error:\n" + e.Exception.Message, "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-        try
-        {
-            Db.Init();
-        }
-        catch (Exception ex) // SqlException, LocalDB not installed, etc.
-        {
-            SampleData.Seed();
-            MessageBox.Show("Could not connect to the database, so the app runs on demo data and changes will not be saved." +
-                Environment.NewLine + Environment.NewLine + ex.Message,
-                "Database", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
         SampleData.SelfCheck();
         Application.Run(new LoginForm());
     }

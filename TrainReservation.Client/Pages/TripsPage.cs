@@ -107,13 +107,11 @@ public partial class TripsPage : UserControl
         if (dtpDeparture.Value < DateTime.Now) { Theme.Warn("Departure must be in the future."); return; }
         var stops = ReadStops();
         if (stops == null) return;
-        var trip = new Trip
+        SampleData.Trips.Add(new Trip
         {
             Id = SampleData.NextId(SampleData.Trips, t => t.Id),
             Train = train, Departure = dtpDeparture.Value, Stops = stops
-        };
-        Db.Save(trip);
-        SampleData.Trips.Add(trip);
+        });
         LoadGrid();
         Theme.Info("Trip scheduled.");
     }
@@ -132,7 +130,6 @@ public partial class TripsPage : UserControl
         selected.Train = train;
         selected.Departure = dtpDeparture.Value;
         selected.Stops = stops;
-        Db.Save(selected);
         LoadGrid();
         Theme.Info("Trip updated.");
     }
@@ -146,7 +143,6 @@ public partial class TripsPage : UserControl
             return;
         }
         if (!Theme.Confirm($"Delete trip {selected.Route} on {selected.Departure:dd/MM HH:mm}?")) return;
-        Db.Delete("Trips", selected.Id); // its stops go too (ON DELETE CASCADE)
         SampleData.Trips.Remove(selected);
         LoadGrid();
     }

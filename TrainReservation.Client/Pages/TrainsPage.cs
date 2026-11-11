@@ -81,7 +81,6 @@ public partial class TrainsPage : UserControl
         if (!ValidateInput()) return;
         var t = new Train { Id = SampleData.NextId(SampleData.Trains, x => x.Id) };
         Apply(t);
-        Db.Save(t);
         SampleData.Trains.Add(t);
         LoadGrid();
         Theme.Info("Train added.");
@@ -99,7 +98,6 @@ public partial class TrainsPage : UserControl
             return;
         }
         Apply(selected);
-        Db.Save(selected);
         LoadGrid();
         Theme.Info("Train updated.");
     }
@@ -113,7 +111,6 @@ public partial class TrainsPage : UserControl
             return;
         }
         if (!Theme.Confirm($"Delete train {selected}?")) return;
-        Db.Delete("Trains", selected.Id);
         SampleData.Trains.Remove(selected);
         LoadGrid();
     }
