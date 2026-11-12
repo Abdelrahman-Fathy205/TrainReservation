@@ -20,6 +20,7 @@ partial class MyTicketsPage
         pnlBottom = new Panel();
         lblTotal = new Label();
         btnPrint = new Button();
+        btnCancel = new Button();
         dgv = new DataGridView();
         pnlTop.SuspendLayout();
         pnlBottom.SuspendLayout();
@@ -74,6 +75,7 @@ partial class MyTicketsPage
         //
         pnlBottom.Controls.Add(lblTotal);
         pnlBottom.Controls.Add(btnPrint);
+        pnlBottom.Controls.Add(btnCancel);
         pnlBottom.Dock = DockStyle.Bottom;
         pnlBottom.Name = "pnlBottom";
         pnlBottom.Size = new Size(1000, 60);
@@ -102,6 +104,22 @@ partial class MyTicketsPage
         btnPrint.Text = "Print ticket";
         btnPrint.UseVisualStyleBackColor = false;
         btnPrint.Click += btnPrint_Click;
+        //
+        // btnCancel
+        //
+        btnCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnCancel.BackColor = Color.White;
+        btnCancel.FlatAppearance.BorderColor = Color.FromArgb(220, 38, 38);
+        btnCancel.FlatStyle = FlatStyle.Flat;
+        btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        btnCancel.ForeColor = Color.FromArgb(220, 38, 38);
+        btnCancel.Location = new Point(625, 12);
+        btnCancel.Name = "btnCancel";
+        btnCancel.Size = new Size(180, 42);
+        btnCancel.TabIndex = 4;
+        btnCancel.Text = "Cancel ticket";
+        btnCancel.UseVisualStyleBackColor = false;
+        btnCancel.Click += btnCancel_Click;
         //
         // dgv
         //
@@ -137,5 +155,6 @@ partial class MyTicketsPage
     private Panel pnlBottom;
     private Label lblTotal;
     private Button btnPrint;
+    private Button btnCancel;
     private DataGridView dgv;
 }

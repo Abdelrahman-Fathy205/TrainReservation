@@ -168,7 +168,7 @@ partial class SeatSelectionForm
         Name = "SeatSelectionForm";
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.CenterParent;
-        Text = "Choose your seat";
+        Text = "Choose your seats";
         pnlInfo.ResumeLayout(false);
         pnlInfo.PerformLayout();
         pnlCoach.ResumeLayout(false);

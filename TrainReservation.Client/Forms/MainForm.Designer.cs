@@ -13,6 +13,8 @@ partial class MainForm
     private void InitializeComponent()
     {
         pnlSidebar = new Panel();
+        btnProfile = new Button();
+        btnTheme = new Button();
         btnLogout = new Button();
         btnMyTickets = new Button();
         btnSearch = new Button();
@@ -34,6 +36,8 @@ partial class MainForm
         // pnlSidebar
         //
         pnlSidebar.BackColor = Color.FromArgb(23, 37, 84);
+        pnlSidebar.Controls.Add(btnProfile); // added first so it docks above Dark mode / Log out
+        pnlSidebar.Controls.Add(btnTheme);
         pnlSidebar.Controls.Add(btnLogout);
         pnlSidebar.Controls.Add(btnMyTickets);
         pnlSidebar.Controls.Add(btnSearch);
@@ -174,6 +178,36 @@ partial class MainForm
         //
         // btnLogout
         //
+        btnProfile.Cursor = Cursors.Hand;
+        btnProfile.Dock = DockStyle.Bottom;
+        btnProfile.FlatAppearance.BorderSize = 0;
+        btnProfile.FlatStyle = FlatStyle.Flat;
+        btnProfile.ForeColor = Color.FromArgb(147, 197, 253);
+        btnProfile.Name = "btnProfile";
+        btnProfile.Padding = new Padding(20, 0, 0, 0);
+        btnProfile.Size = new Size(230, 44);
+        btnProfile.TabIndex = 7;
+        btnProfile.Text = "My profile";
+        btnProfile.TextAlign = ContentAlignment.MiddleLeft;
+        btnProfile.Click += btnProfile_Click;
+        //
+        // btnTheme
+        //
+        btnTheme.Cursor = Cursors.Hand;
+        btnTheme.Dock = DockStyle.Bottom;
+        btnTheme.FlatAppearance.BorderSize = 0;
+        btnTheme.FlatStyle = FlatStyle.Flat;
+        btnTheme.ForeColor = Color.FromArgb(147, 197, 253);
+        btnTheme.Name = "btnTheme";
+        btnTheme.Padding = new Padding(20, 0, 0, 0);
+        btnTheme.Size = new Size(230, 44);
+        btnTheme.TabIndex = 8;
+        btnTheme.Text = "Dark mode";
+        btnTheme.TextAlign = ContentAlignment.MiddleLeft;
+        btnTheme.Click += btnTheme_Click;
+        //
+        // btnLogout
+        //
         btnLogout.Cursor = Cursors.Hand;
         btnLogout.Dock = DockStyle.Bottom;
         btnLogout.FlatAppearance.BorderSize = 0;
@@ -182,7 +216,7 @@ partial class MainForm
         btnLogout.Name = "btnLogout";
         btnLogout.Padding = new Padding(20, 0, 0, 0);
         btnLogout.Size = new Size(230, 50);
-        btnLogout.TabIndex = 8;
+        btnLogout.TabIndex = 9;
         btnLogout.Text = "Log out";
         btnLogout.TextAlign = ContentAlignment.MiddleLeft;
         btnLogout.Click += btnLogout_Click;
@@ -254,6 +288,8 @@ partial class MainForm
     private Button btnReports;
     private Button btnSearch;
     private Button btnMyTickets;
+    private Button btnProfile;
+    private Button btnTheme;
     private Button btnLogout;
     private Panel pnlHeader;
     private Label lblPageTitle;

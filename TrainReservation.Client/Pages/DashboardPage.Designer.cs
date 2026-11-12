@@ -25,6 +25,12 @@ partial class DashboardPage
         card4 = new Panel();
         lblValue4 = new Label();
         lblTitle4 = new Label();
+        pnlNextHost = new Panel();
+        pnlNext = new Panel();
+        lblNextTitle = new Label();
+        lblNextRoute = new Label();
+        lblNextDetail = new Label();
+        btnNextPrint = new Button();
         lblList = new Label();
         dgv = new DataGridView();
         flowCards.SuspendLayout();
@@ -32,6 +38,8 @@ partial class DashboardPage
         card2.SuspendLayout();
         card3.SuspendLayout();
         card4.SuspendLayout();
+        pnlNextHost.SuspendLayout();
+        pnlNext.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
         SuspendLayout();
         //
@@ -150,6 +158,68 @@ partial class DashboardPage
         lblValue4.Name = "lblValue4";
         lblValue4.Text = "0";
         //
+        // pnlNextHost
+        //
+        pnlNextHost.Controls.Add(pnlNext);
+        pnlNextHost.Dock = DockStyle.Top;
+        pnlNextHost.Name = "pnlNextHost";
+        pnlNextHost.Padding = new Padding(0, 0, 0, 16);
+        pnlNextHost.Size = new Size(1000, 124);
+        pnlNextHost.TabIndex = 2;
+        pnlNextHost.Visible = false;
+        //
+        // pnlNext
+        //
+        pnlNext.BackColor = Color.FromArgb(30, 58, 138);
+        pnlNext.Controls.Add(btnNextPrint);
+        pnlNext.Controls.Add(lblNextDetail);
+        pnlNext.Controls.Add(lblNextRoute);
+        pnlNext.Controls.Add(lblNextTitle);
+        pnlNext.Dock = DockStyle.Fill;
+        pnlNext.Name = "pnlNext";
+        //
+        // lblNextTitle
+        //
+        lblNextTitle.AutoSize = true;
+        lblNextTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        lblNextTitle.ForeColor = Color.FromArgb(147, 197, 253);
+        lblNextTitle.Location = new Point(20, 12);
+        lblNextTitle.Name = "lblNextTitle";
+        lblNextTitle.Text = "YOUR NEXT TRIP";
+        //
+        // lblNextRoute
+        //
+        lblNextRoute.AutoSize = true;
+        lblNextRoute.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        lblNextRoute.ForeColor = Color.White;
+        lblNextRoute.Location = new Point(16, 30);
+        lblNextRoute.Name = "lblNextRoute";
+        lblNextRoute.Text = "From → To";
+        //
+        // lblNextDetail
+        //
+        lblNextDetail.AutoSize = true;
+        lblNextDetail.ForeColor = Color.White;
+        lblNextDetail.Location = new Point(20, 74);
+        lblNextDetail.Name = "lblNextDetail";
+        lblNextDetail.Text = "Details";
+        //
+        // btnNextPrint
+        //
+        btnNextPrint.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnNextPrint.BackColor = Color.FromArgb(245, 158, 11);
+        btnNextPrint.FlatAppearance.BorderSize = 0;
+        btnNextPrint.FlatStyle = FlatStyle.Flat;
+        btnNextPrint.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        btnNextPrint.ForeColor = Color.White;
+        btnNextPrint.Location = new Point(820, 33);
+        btnNextPrint.Name = "btnNextPrint";
+        btnNextPrint.Size = new Size(160, 42);
+        btnNextPrint.TabIndex = 0;
+        btnNextPrint.Text = "Print ticket";
+        btnNextPrint.UseVisualStyleBackColor = false;
+        btnNextPrint.Click += btnNextPrint_Click;
+        //
         // lblList
         //
         lblList.Dock = DockStyle.Top;
@@ -172,6 +242,7 @@ partial class DashboardPage
         BackColor = Color.FromArgb(243, 244, 246);
         Controls.Add(dgv);
         Controls.Add(lblList);
+        Controls.Add(pnlNextHost);
         Controls.Add(flowCards);
         Font = new Font("Segoe UI", 10F);
         Name = "DashboardPage";
@@ -185,6 +256,9 @@ partial class DashboardPage
         card3.PerformLayout();
         card4.ResumeLayout(false);
         card4.PerformLayout();
+        pnlNextHost.ResumeLayout(false);
+        pnlNext.ResumeLayout(false);
+        pnlNext.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
         ResumeLayout(false);
     }
@@ -202,6 +276,12 @@ partial class DashboardPage
     private Panel card4;
     private Label lblTitle4;
     private Label lblValue4;
+    private Panel pnlNextHost;
+    private Panel pnlNext;
+    private Label lblNextTitle;
+    private Label lblNextRoute;
+    private Label lblNextDetail;
+    private Button btnNextPrint;
     private Label lblList;
     private DataGridView dgv;
 }
